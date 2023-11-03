@@ -16,6 +16,10 @@ with open("budget_data.csv", "r") as csv_file:
     list_profit_loss = []
     # create empty list to store total months
     list_months = []
+    # new list for
+    list_sum_profit_loss = []
+
+    prev_line = False
 
     # loop through the csvfile
     for line in csv_reader:
@@ -27,6 +31,10 @@ with open("budget_data.csv", "r") as csv_file:
         list_profit_loss.append(int(profit_loss))
         # add months to list
         list_months.append(months)
+        # add profit_loss columns together and find max
+        if prev_line:
+            list_sum_profit_loss.append(int(line[1]) - int(prev_line[1]))
+        prev_line = line
 
     print("Financial Analysis")
     print("---------------------------------------")
@@ -37,4 +45,4 @@ with open("budget_data.csv", "r") as csv_file:
     print(
         f"Average Change: ${round(((list_profit_loss[len(list_profit_loss) - 1]) - (list_profit_loss[0]))/ (len(list_profit_loss) - 1), 2)}"
     )
-    print(max(list_profit_loss))
+    # print(max(list_profit_loss))
