@@ -45,4 +45,4 @@ with open("budget_data.csv", "r") as csv_file:
     print(
         f"Average Change: ${round(((list_profit_loss[len(list_profit_loss) - 1]) - (list_profit_loss[0]))/ (len(list_profit_loss) - 1), 2)}"
     )
-    # print(max(list_profit_loss))
+    print(f"Greatest Increase in Profits: ", ({list_sum_profit_loss}))
