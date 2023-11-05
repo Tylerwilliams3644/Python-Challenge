@@ -1,10 +1,6 @@
 import csv
 
 
-# def average_change(list_to_average):
-# return sum(list_to_average) / len(list_to_average)
-
-
 # reading csv file
 with open("budget_data.csv", "r") as csv_file:
     csv_reader = csv.reader(csv_file)
