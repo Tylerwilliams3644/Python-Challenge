@@ -11,10 +11,17 @@ with open("election_data.csv", "r") as csv_file:
 
     raymon_votes = 0
 
+    canidates_names = []
+
+    canidates_votes = []
+
+    canidates_dict = {}
+
     next(csv_reader)
 
     for line in csv_reader:
         total_votes += 1
+        canidates = line[2]
         if line[2] == "Charles Casper Stockham":
             charles_votes += 1
         if line[2] == "Diana DeGette":
@@ -24,7 +31,11 @@ with open("election_data.csv", "r") as csv_file:
         charles_percentage = round(int(charles_votes) / int(total_votes) * 100, 3)
         diana_percentage = round(int(diana_votes) / int(total_votes) * 100, 3)
         raymon_percentage = round(int(raymon_votes) / int(total_votes) * 100, 3)
-        winner = max(charles_votes, diana_votes, raymon_votes)
+        if canidates not in canidates_names:
+            canidates_names.append(canidates)
+
+    for key, value in zip(canidates_names, canidates_votes):
+        canidates_dict[key] = value
 
     pypoll_results = (
         f"Election Results\n"
@@ -36,7 +47,8 @@ with open("election_data.csv", "r") as csv_file:
         f"Raymon Anthony Doane: {raymon_percentage}% ({raymon_votes})\n"
         f"------------------------\n"
         ####### need to find a way to make the winner and automated process
-        f"Winner: {winner}\n"
+        # f"Winner: {winner}\n"
         f"------------------------\n"
     )
     print(pypoll_results)
+    print(canidates_dict)
