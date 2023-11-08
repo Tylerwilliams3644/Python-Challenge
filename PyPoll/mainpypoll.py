@@ -7,15 +7,19 @@ with open("election_data.csv", "r") as csv_file:
 
     max_votes = 0
 
-    canidates_names = []
+    # canidates_names = []
 
-    canidates_votes = []
+    # canidates_votes = []
 
     canidates_dict = {}
 
     winner_dict = {}
 
     header = next(csv_reader)
+
+    winner = None
+
+    output_list = []
 
     for line in csv_reader:
         total_votes += 1
@@ -28,17 +32,24 @@ with open("election_data.csv", "r") as csv_file:
         County = line[1]
         canidates = line[2]
 
-        if canidates not in canidates_names:
-            canidates_names.append(canidates)
+        # if canidates not in canidates_names:
+        # canidates_names.append(canidates)
 
     for key, value in canidates_dict.items():
-        print(f"{key}: {round(value/total_votes *100, 3)}% ({value})")
+        output = f"{key}: {round(value/total_votes *100, 3)}% ({value})"
+        output_list.append(output)  # Append each printed item to the list
+        print(output)
 
         if value > max_votes:
             winner = key
             max_votes = value
 
-    print(f"Winner: {winner}")
+    print("All printed items:")
+    for item in output_list:
+        print(item)
+
+    ##print(f"Winner: {winner}")
+    # print(name_vote_results)
 
     # if line[2] == "Charles Casper Stockham":
     #    charles_votes += 1
@@ -64,5 +75,4 @@ with open("election_data.csv", "r") as csv_file:
     # f"------------------------\n"
     # )
     # print(pypoll_results)
-    print(canidates_dict)
-    print(total_votes)
+    # print(canidates_dict)
